@@ -1,4 +1,0 @@
-﻿  main.cpp
-c:\users\mars\documents\12-29\pkgamewithvc\main.cpp(4): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
-  PKGameWithVC.vcxproj -> C:\Users\Mars\Documents\12-29\PKGameWithVC\Debug\PKGameWithVC.exe
-  PKGameWithVC.vcxproj -> C:\Users\Mars\Documents\12-29\PKGameWithVC\Debug\PKGameWithVC.pdb (Full PDB)
