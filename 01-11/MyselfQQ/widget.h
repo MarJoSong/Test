@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QUdpSocket>
 
 namespace Ui {
 class Widget;
@@ -11,6 +12,8 @@ class Widget : public QWidget
 {
     Q_OBJECT
     
+enum MsgType {Msg,UsrEnter,UsrLeft};
+
 public:
     explicit Widget(QWidget *parent, QString name);
     ~Widget();
@@ -32,7 +35,7 @@ public:
    QString getMsg(); //获取聊天信息
 private:
    QUdpSocket * udpSocket; //udp套接字
-   qint16 port; //端口
+   quint16 port; //端口
    QString uName; //用户名
 
   void ReceiveMessage();   //接受UDP消息
