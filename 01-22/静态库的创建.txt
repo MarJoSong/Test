@@ -1,0 +1,62 @@
+----------目录结构如下-----------
+.
+├── include	[文件夹]
+│     └── head.h
+├── lib
+├── main.c
+└── src		[文件夹]	
+       ├── add.c
+       ├── div.c
+       ├── mul.c
+       └── sub.c
+
+-------------head.h--------------
+int add(int a, int b);
+int sub(int a, int b);
+int mul(int a, int b);
+int div(int a, int b);
+
+--------------add.c--------------
+#include "head.h"
+int add(int a, int b)
+{
+	return a + b;
+}
+
+--------------div.c--------------
+#include "head.h"
+int div(int a, int b)
+{
+	return a / b;
+}
+
+--------------mul.c--------------
+#include "head.h"
+int mul(int a, int b)
+{
+	return a * b;
+}
+
+--------------sub.c--------------
+#include "head.h"
+int sub(int a, int b)
+{
+	return a - b;
+}
+
+第一步: 生成独立.o文件
+hua@Aliyun:~/Static$ gcc -c src/*.c -I include/
+hua@Aliyun:~/Static$ ls
+add.o  div.o  include  lib  main.c  mul.o  src  sub.o
+
+第二步: 合并生成库文件
+hua@Aliyun:~/Static$ ar rcs lib/libCalc.a *.o
+hua@Aliyun:~/Static$ ls lib/
+libCalc.a
+
+第二步: 加入库文件生成程序
+hua@Aliyun:~/Static$ gcc main.c -o app -I include/ -L lib/ -l Calc
+hua@Aliyun:~/Static$ ls
+add.o  app  div.o  include  lib  main.c  mul.o  src  sub.o
+
+

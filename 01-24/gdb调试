@@ -1,0 +1,29 @@
+启动gdb调试,gdb+需要调试的应用程序
+	# gdb app
+	# gdb app coreXXXX 	还原案发现场
+
+打开gdb之后:
+	(gdb) r[un] ..,..	运行程序，可指定参数
+	(gdb) start		启动并停留在main函数
+	(gdb) n[ext]		单步执行
+	(gdb) s[tep] 		单步执行，可以进入函数内部
+	(gdb) q[uit]		退出GDB
+	(gdb) set args ..,..	指定参数
+	(gdb) set 变量,值	设置变量
+	(gdb) break 行号n	在第n行设置断点
+	(gdb) b[reak] 函数sum	在sum函数设置断点
+	(gdb) b fun.c:6		在fun.c文件第六行设置断点
+	(gdb) b 行号 条件(if i==5) 条件断点
+	(gdb) list		默认主函数所在文件代码，默认10行
+	(gdb) list 文件名:行号	
+	(gdb) i[nfo] b		查看断点，得到断点编号
+	(gdb) d[el] 编号	按编号删除断点
+	(gdb) c[ontinue]	执行到下一断点
+	(gdb) p[rint] 变量	打印变量的值
+	(gdb) ptype 变量	打印变量的值
+	(gdb) [un]display 变量	跟踪显示变量
+	(gdb) info display	查看跟踪显示的变量
+	
+
+
+

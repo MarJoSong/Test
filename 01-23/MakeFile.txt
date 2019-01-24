@@ -1,0 +1,61 @@
+makefile三要素:
+目标: 依赖文件
+	命令
+
+e.g.:
+app:main.c fun.c 
+	gcc -o app -I ./include main.c fun.c
+
+可以定义变量:
+e.g.:
+ObjFiles=main.o fun.o
+
+app:$(ObjFiles)
+	gcc -o app -I ./include main.o fun.o
+
+main.o:main.c
+	gcc -c main.c -I ./include
+fun.o:fun.c
+	gcc -c fun.c -I ./include
+
+makefile的隐含规则: 默认处理第一个目标
+函数:
+	wildcard 可进行文本匹配
+	patsubst 内容的替换
+e.g.:
+#Get All c Files
+SrcFiles=$(wildcard *.c)
+
+ObjFiles=$(patsubst %.c,%.o,$(SrcFiles))
+
+app:$(ObjFiles)
+	gcc -o app -I ./include main.o fun.o
+
+
+
+
+makefile的变量:
+	$@ 代表目标
+	$^ 代表全部依赖
+	$< 第一个依赖
+	$? 第一个变化的依赖
+e.g.:
+#Get All c Files
+SrcFiles=$(wildcard *.c)
+
+ObjFiles=$(patsubst %.c,%.o,$(SrcFiles))
+
+app:$(ObjFiles)
+	gcc -o app -I ./include main.o add.o sub.o div.o mul.o
+
+%.o:%.c
+	gcc -o $@ -c $< -I ./include
+
+
+makefile清理工作:
+#定义伪目标，防止有歧义
+.PHONY:clean
+clean:
+	@rm -f *.o
+	@代表隐式执行，-f代表强制执行
+使用make clean命令指定执行目标
