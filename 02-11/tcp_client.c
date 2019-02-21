@@ -10,12 +10,12 @@
 
 int main(int argc, char* argv[])
 {
-	if(argc>2)
+	if(argc!=3)
 	{
-		printf("Usage: tcp_client port\n");
+		printf("用法: ./tcp_client ip port\n");
 		exit(1);
 	}
-	int port = atoi(argv[1]);
+	int port = atoi(argv[2]);
 
 	//创建套接字
 	int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 	serv.sin_family = AF_INET;
 	serv.sin_port = htons(port);
 	//serv.sin_addr.s_addr = htonl();
-	inet_pton(AF_INET, "127.0.0.1", &serv.sin_addr.s_addr);
+	inet_pton(AF_INET, argv[1], &serv.sin_addr.s_addr);
 	connect(fd, (struct sockaddr*)&serv, sizeof(serv));
 
 	//通信
@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
 		//发送数据
 		char buf[1024];
 		printf("请输入要发送的字符串:\n");
+        fflush(stdin);
 		fgets(buf, sizeof(buf), stdin);
 		write(fd, buf, strlen(buf));
 
@@ -51,7 +52,7 @@ int main(int argc, char* argv[])
 		}
 		else
 		{
-			printf("recv buf: %s\n", buf);
+			printf("接收到的数据: %s\n", buf);
 		}
 	}
 	return 0;
