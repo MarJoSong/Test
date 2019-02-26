@@ -54,7 +54,7 @@ int main()
         if(ret==-1)
         {
             perror("sendto error");
-            exit(1);
+            break;
         }
         printf("服务器向外广播 %d 次\n", num);
         sleep(1);

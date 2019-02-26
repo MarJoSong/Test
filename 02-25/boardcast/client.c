@@ -34,12 +34,9 @@ int main()
         if(len==-1)
         {
             perror("recvfrom error");
-            exit(1);
+            break;
         }
-        else
-        {
-            printf("收到广播，内容为: %s\n", buf);
-        }
+        printf("收到广播，内容为: %s\n", buf);
     }
 
     close(fd);
