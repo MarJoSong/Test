@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	struct sockaddr_in server;
 	memset(&server, 0, sizeof(server));
 	server.sin_family = AF_INET;
-	server.sin_port = htons(8888);
+	server.sin_port = htons(5678);
 	server.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	int ret = bind(lfd, (struct sockaddr*)&server, sizeof(server));
